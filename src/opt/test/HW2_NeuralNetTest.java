@@ -25,7 +25,7 @@ import java.text.*;
 public class HW2_NeuralNetTest {
     private static Instance[] instances = initializeInstances();
 
-    private static int inputLayer = 27, hiddenLayer = 4, outputLayer = 1, trainingIterations = 1;
+    private static int inputLayer = 27, hiddenLayer = 10, outputLayer = 1, trainingIterations = 1;
     private static double trainSize = .8;
 
     private static int countIters = 0;
@@ -117,14 +117,14 @@ public class HW2_NeuralNetTest {
                 double error2 = 0;
 
 
-//                for (j = 0; j < instances.length * trainSize; j++) {
-//                    network.setInputValues(instances[j].getData());
-//                    network.run();
-//
-//                    Instance output = instances[j].getLabel(), example = new Instance(network.getOutputValues());
-//                    example.setLabel(new Instance(Double.parseDouble(network.getOutputValues().toString())));
-//                    error += measure.value(output, example);
-//                }
+                for (j = 0; j < instances.length * trainSize; j++) {
+                    network.setInputValues(instances[j].getData());
+                    network.run();
+
+                    Instance output = instances[j].getLabel(), example = new Instance(network.getOutputValues());
+                    example.setLabel(new Instance(Double.parseDouble(network.getOutputValues().toString())));
+                    error += measure.value(output, example);
+                }
 
                 System.out.println(df.format(error / j));
 
