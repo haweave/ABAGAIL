@@ -41,7 +41,7 @@ public class FixedIterationTrainer implements Trainer {
         Date date=new Date(time);
 
         try {
-            String sFileName = "/home/harry/gtech/ml/hw2/csvs/" + startTime + ".csv";
+            String sFileName = System.getProperty("user.dir")+"/csvs/" + time + ".csv";
             FileWriter writer = new FileWriter(sFileName);
             for (int i = 0; i < iterations; i++) {
                 value = trainer.train();
