@@ -33,7 +33,7 @@ import shared.FixedIterationTrainer;
  */
 public class TravelingSalesmanTest {
     /** The n value */
-    private static final int N = 50;
+    private static final int N = 100;
     /**
      * The test main
      * @param args ignored
@@ -56,30 +56,38 @@ public class TravelingSalesmanTest {
         GeneticAlgorithmProblem gap = new GenericGeneticAlgorithmProblem(ef, odd, mf, cf);
         
         RandomizedHillClimbing rhc = new RandomizedHillClimbing(hcp);      
-        FixedIterationTrainer fit = new FixedIterationTrainer(rhc, 200000);
+        FixedIterationTrainer fit = new FixedIterationTrainer(rhc, 20000);
         fit.train();
         System.out.println(ef.value(rhc.getOptimal()));
         
-        SimulatedAnnealing sa = new SimulatedAnnealing(1E12, .95, hcp);
-        fit = new FixedIterationTrainer(sa, 200000);
+        SimulatedAnnealing sa = new SimulatedAnnealing(1E12, .99, hcp);
+        fit = new FixedIterationTrainer(sa, 20000);
         fit.train();
         System.out.println(ef.value(sa.getOptimal()));
         
-        StandardGeneticAlgorithm ga = new StandardGeneticAlgorithm(200, 150, 20, gap);
-        fit = new FixedIterationTrainer(ga, 1000);
+        StandardGeneticAlgorithm ga = new StandardGeneticAlgorithm(2000, 1000, 50, gap);
+        fit = new FixedIterationTrainer(ga, 20000);
         fit.train();
         System.out.println(ef.value(ga.getOptimal()));
-        
-        // for mimic we use a sort encoding
+
+//        Distribution df = new DiscreteDependencyTree(.1);
+//        ProbabilisticOptimizationProblem pop = new GenericProbabilisticOptimizationProblem(ef, odd, df);
+//        MIMIC mimic = new MIMIC(200, 5, pop);
+//        fit = new FixedIterationTrainer(mimic, 1000);
+//        fit.train();
+//        System.out.println(ef.value(mimic.getOptimal()));
+
+
+//         for mimic we use a sort encoding
         ef = new TravelingSalesmanSortEvaluationFunction(points);
         int[] ranges = new int[N];
         Arrays.fill(ranges, N);
         odd = new  DiscreteUniformDistribution(ranges);
-        Distribution df = new DiscreteDependencyTree(.1, ranges); 
+        Distribution df = new DiscreteDependencyTree(.1, ranges);
         ProbabilisticOptimizationProblem pop = new GenericProbabilisticOptimizationProblem(ef, odd, df);
-        
+
         MIMIC mimic = new MIMIC(200, 100, pop);
-        fit = new FixedIterationTrainer(mimic, 1000);
+        fit = new FixedIterationTrainer(mimic, 20000);
         fit.train();
         System.out.println(ef.value(mimic.getOptimal()));
         

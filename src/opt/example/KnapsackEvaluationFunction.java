@@ -46,6 +46,7 @@ public class KnapsackEvaluationFunction implements EvaluationFunction {
         for (int i = 0; i < v.length; i++) {
             maxVolumeSum += maxC[i] * v[i];
         }
+
     }
 
     /**

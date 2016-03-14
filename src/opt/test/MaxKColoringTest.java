@@ -85,7 +85,7 @@ public class MaxKColoringTest {
         System.out.println("============================");
         
         starttime = System.currentTimeMillis();
-        SimulatedAnnealing sa = new SimulatedAnnealing(1E12, .1, hcp);
+        SimulatedAnnealing sa = new SimulatedAnnealing(100, .95, hcp);
         fit = new FixedIterationTrainer(sa, 20000);
         fit.train();
         System.out.println("SA: " + ef.value(sa.getOptimal()));

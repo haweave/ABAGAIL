@@ -78,7 +78,7 @@ public class BackPropagationNetworkFactory {
 	public BackPropagationNetwork createRegressionNetwork(int[] nodeCounts) {
 		return createRegressionNetwork(nodeCounts, new HyperbolicTangentSigmoid());
 	}
-    
+
     /**
      * Create a multilayer perceptron
      * with a softmax output layer
